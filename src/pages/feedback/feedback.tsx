@@ -3,6 +3,7 @@ import Intro from "../../components/intro/intro.tsx";
 import Info from "../../components/info/info.tsx";
 import Header from "../../components/header/header.tsx";
 import Nav from "../../components/nav/nav.tsx";
+import Footer from "../../components/footer/footer.tsx";
 
 const Feedback: React.FC = () => {
 
@@ -28,6 +29,7 @@ const Feedback: React.FC = () => {
       <Entry data={data}/>
       <Entry data={data}/>
 
+      <Footer/>
     </>
   )
 }
