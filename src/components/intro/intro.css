@@ -1,0 +1,99 @@
+.intro {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: var(--neutral);
+}
+    .intro__wrap {
+        position: relative;
+    }
+        .intro__teacher {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -100px;
+        }
+
+        .intro__inner {
+            max-width: 1184px;
+        }
+
+        .intro__teacher ~ .intro__inner {
+            margin-right: 224px;
+        }
+
+            .intro__nav {
+
+            }
+                .intro__nav.breadcrumbs,
+                .intro__nav .breadcrumbs {
+                    padding-top: 0;
+                    padding-bottom: 24px;
+                }
+
+            .intro__heading {
+                margin-top: 0;
+                margin-bottom: 0;
+                font-weight: var(--extra-bold);
+                font-size: 42px;
+                line-height: 46px;
+            }
+
+            .intro__description {
+                margin-top: 24px;
+            }
+
+            .intro__operations {
+                margin-top: 40px;
+                display: flex;
+                align-items: flex-start;
+                gap: 16px;
+            }
+                .intro__action {
+
+                }
+
+
+@media (max-width: 639px) {
+
+    .intro {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+        .intro__wrap {
+
+        }
+            .intro__teacher {
+                display: none;
+            }
+
+            .intro__inner {
+
+            }
+
+            .intro__teacher ~ .intro__inner {
+                margin-right: 0;
+            }
+                .intro__nav {
+
+                }
+
+                .intro__heading {
+                    font-size: 36px;
+                    line-height: 40px;
+                    word-wrap: break-word;
+                }
+
+                .intro__description {
+                    margin-top: 20px;
+                }
+
+                .intro__operations {
+                    margin-top: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                    .intro__action {
+
+                    }
+}
