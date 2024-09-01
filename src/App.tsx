@@ -1,24 +1,19 @@
-import Badge from "./components/badge/badge.tsx";
-import Entry from "./components/entry/entry.tsx";
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import Home from "./pages/home/home.tsx";
+import Feedback from "./pages/feedback/feedback.tsx";
+import NotFound from "./pages/not-found/not-found.tsx";
 
 function App() {
 
-  const data = {
-    id: 1,
-    url: 'lorem',
-    author: 'lorem',
-    content: 'lorem',
-    tags: ['lorem', 'lorem', 'lorem'],
-    date_published: 'Wed Oct 05 2011 16:48:00 GMT+0200 (CEST)'
-  }
-
   return (
-    <>
-
-      <Entry data={data}/>
-
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/feedback" element={<Feedback/>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App
