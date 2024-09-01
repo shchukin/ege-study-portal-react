@@ -5,6 +5,12 @@ import Header from "../../components/header/header.tsx";
 import Nav from "../../components/nav/nav.tsx";
 import Footer from "../../components/footer/footer.tsx";
 
+import './collapse.css';
+import './listing.css';
+import './feed.css';
+import Panel from "../../components/panel/panel.tsx";
+
+
 const Feedback: React.FC = () => {
 
   const data = {
@@ -25,9 +31,113 @@ const Feedback: React.FC = () => {
       <Info></Info>
       <Intro>Отзывы</Intro>
 
-      <Entry data={data}/>
-      <Entry data={data}/>
-      <Entry data={data}/>
+
+      <div className="feed container">
+        <div className="feed__sidebar">
+          <div className="feed__detachable-area">
+            <div className="collapse">
+              <button className="collapse__handler" type="button">
+                Все новости
+              </button>
+              <nav className="collapse__dropdown">
+                <h2 className="collapse__heading">
+                  Предметы
+                </h2>
+                <div className="collapse__list">
+                  <a className="collapse__link collapse__link--current" href="#">Все предметы</a>
+                  <a className="collapse__link" href="#">Математика</a>
+                  <a className="collapse__link" href="#">Русский язык</a>
+                  <a className="collapse__link" href="#">Информатика</a>
+                  <a className="collapse__link" href="#">Биология</a>
+                  <a className="collapse__link" href="#">Химия</a>
+                  <a className="collapse__link" href="#">Обществознание</a>
+                  <a className="collapse__link" href="#">Литература</a>
+                  <a className="collapse__link" href="#">География</a>
+                  <a className="collapse__link" href="#">Английский</a>
+                  <a className="collapse__link" href="#">История</a>
+                  <a className="collapse__link" href="#">Физика</a>
+                </div>
+              </nav>
+            </div>
+            <div className="collapse">
+              <button className="collapse__handler" type="button">
+                Форматы занятий
+              </button>
+              <nav className="collapse__dropdown">
+                <h2 className="collapse__heading">
+                  Форматы занятий
+                </h2>
+                <div className="collapse__list">
+                  <a className="collapse__link collapse__link--current" href="#">Все</a>
+                  <a className="collapse__link" href="#">Очно</a>
+                  <a className="collapse__link" href="#">Онлайн (в&nbsp;прямом эфире)</a>
+                  <a className="collapse__link" href="#">В&nbsp;записи</a>
+                </div>
+              </nav>
+            </div>
+            <div className="collapse">
+              <button className="collapse__handler" type="button">
+                Преподаватели
+              </button>
+              <nav className="collapse__dropdown">
+                <h2 className="collapse__heading">
+                  Преподаватели
+                </h2>
+                <div className="collapse__list">
+                  <a className="collapse__link collapse__link--current" href="#">Все</a>
+                  <a className="collapse__link" href="#">Гущина О.В.</a>
+                  <a className="collapse__link" href="#">Малкова А.Н.</a>
+                  <a className="collapse__link" href="#">Кривенкова И.А.</a>
+                  <a className="collapse__link" href="#">Храпова&nbsp;И.&nbsp;М.</a>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div className="feed__content">
+          <div className="feed__bar">
+            <Panel/>
+          </div>
+          <div className="feed__list listing">
+            <div className="listing__filter hide-scrollbar">
+              <div className="listing__ribbon">
+                <button className="listing__tag listing__tag--current" type="button">Недавние</button>
+                <button className="listing__tag" type="button">Только видео</button>
+                <button className="listing__tag" type="button">Только статьи</button>
+              </div>
+            </div>
+            <div className="listing__body">
+              <div className="listing__item">
+                <Entry data={data}/>
+              </div>
+              <div className="listing__item">
+                <Entry data={data}/>
+              </div>
+              <div className="listing__item">
+                <Entry data={data}/>
+              </div>
+
+
+
+
+            </div>
+            <div className="listing__pages">
+              <div className="pagination">
+                <a className="pagination__link pagination__link--disabled" href="#">1</a>
+                <a className="pagination__link pagination__link--current" href="#">2</a>
+                <a className="pagination__link" href="#">3</a>
+                <div className="pagination__separator">...</div>
+                <a className="pagination__link" href="#">10</a>
+                <a className="pagination__link pagination__link--next" href="#">Далее →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
 
       <Footer/>
     </>
