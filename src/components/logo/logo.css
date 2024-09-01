@@ -1,0 +1,12 @@
+.logo {
+    display: block;
+    width: 128px;
+    height: 60px;
+    background-image: url("./logo.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+}

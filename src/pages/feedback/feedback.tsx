@@ -1,6 +1,7 @@
 import Entry from "../../components/entry/entry.tsx";
 import Intro from "../../components/intro/intro.tsx";
 import Info from "../../components/info/info.tsx";
+import Header from "../../components/header/header.tsx";
 
 const Feedback: React.FC = () => {
 
@@ -17,8 +18,10 @@ const Feedback: React.FC = () => {
 
   return (
     <>
-      <Info>Отзывы</Info>
+      <Header/>
+      <Info></Info>
       <Intro>Отзывы</Intro>
+
       <Entry data={data}/>
       <Entry data={data}/>
       <Entry data={data}/>

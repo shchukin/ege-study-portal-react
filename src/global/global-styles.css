@@ -4,3 +4,5 @@
 @import url("./global-styles/html.css");
 @import url("./global-styles/body.css");
 @import url("./global-styles/container.css");
+@import url("./global-styles/desktop-only.css");
+@import url("./global-styles/mobile-only.css");
