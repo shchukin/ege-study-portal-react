@@ -1,0 +1,33 @@
+.badge {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 8px 2px;
+    border-radius: 13px;
+    font-size: 15px;
+    line-height: 23px;
+    color: var(--high-emphasis-black);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.badge--moscow {
+    background-color: var(--red-light);
+}
+
+.badge--online {
+    background-color: var(--green-light);
+}
+
+.badge--record {
+    background-color: var(--blue-light);
+}
+
+
+
+.badge--yellow {
+    background-color: var(--yellow-light);
+}
+
+.badge--light-green {
+    background-color: #D0DFC9;
+}

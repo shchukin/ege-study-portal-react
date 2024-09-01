@@ -1,0 +1,21 @@
+.container {
+    width: 100%;
+    max-width: calc(1488px + 2 * var(--container-desktop-padding));
+    margin-left: auto;
+    margin-right: auto;
+    border-left: var(--container-desktop-padding) solid transparent;
+    border-right: var(--container-desktop-padding) solid transparent;
+}
+
+
+@media (max-width: 639px) {
+    .container {
+        border-left: var(--container-mobile-padding) solid transparent;
+        border-right: var(--container-mobile-padding) solid transparent;
+    }
+}
+
+
+.container--wild {
+    max-width: calc(1920px + 2 * var(--container-desktop-padding));
+}

@@ -1,0 +1,83 @@
+/* stylelint-disable declaration-colon-space-after */
+:root {
+    --container-desktop-padding: 60px;
+    --container-mobile-padding: 24px;
+    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-show: 1200ms var(--ease-out-quint);
+    --bar-mobile-collapsed: 80px;
+    --bar-mobile-expanded: 284px;
+    --bar-laptop: 188px;
+    --bar-monitor: 112px;
+    --body-font: "Manrope", sans-serif;
+    --medium: 500;
+    --extra-bold: 800;
+    --red: #FC5E38;
+    --red-light: #FFDDD1;
+    --green: #B2BE65;
+    --green-light: #E4E9C9;
+    --blue-light: #DBEDFE;
+    --primary-black: #1D1D1F;
+    --white: rgba(255, 255, 255, 0.97);
+    --neutral: #FAF6F2;
+    --neutral-hover: #F4F0EB;
+    --border-neutral: #EFE8E1;
+    --yellow: #FFD046;
+    --yellow-light: #FFF5E7;
+    --high-emphasis-black: rgba(15, 16, 21, 0.98);
+    --high-emphasis-white: rgba(255, 255, 255, 0.98);
+    --medium-emphasis-black: #87878A;
+    --medium-emphasis-white: #BFBFBF;
+    --low-emphasis-black: rgba(15, 16, 21, 0.16);
+    --low-emphasis-white: rgba(255, 250, 245, 0.32);
+    --transition-slide: 0.5s ease;
+    --body-17-font: 17px;
+    --body-17-line: 27px;
+    --body-20-font: 20px;
+    --body-20-line: 32px;
+    --caption-font: 15px;
+    --caption-line: 23px;
+    --caption-spacing: 0.3px;
+    --footnote-font: 12px;
+    --footnote-line: 17px;
+    --footnote-spacing: 2.1px;
+    --h4-font: 26px;
+    --h4-line: 34px;
+    --panel-hover: #F2F2F2;
+    --panel-active: #EAEAEA;
+    --image-fallback: #C4C4C4;
+    --image-hover: brightness(1.1) contrast(1.1);
+
+    /* Переменные, которые появились в момент вёрстки alt-landing.html */
+    --alt-landing-container-padding: 30px;
+    --alt-landing-body-font-size: 16px;
+    --alt-landing-body-line-height: 22px;
+    --disabled-background: #EAEAEA;
+    --disabled-color: #999999;
+    --beige: #FAF6F2;
+    --orange: #FC5E38;
+    --orange-90pct: #FD7658;
+    --black: #0F1015;
+    --white-hover: #F3F9FF;
+    --light-orange: #FFDDD1;
+    --input-border: #B3B3B3;
+    --input-border-hover-and-focus: #7E7E7E;
+    --placeholder-color: #878787;
+    --mobile-button: 360px;
+}
+/* stylelint-enable declaration-colon-space-after */
+
+
+
+/* Переменные, которые появились в момент вёрстки alt-landing.html */
+
+@media (350px <= width < 600px) {
+    :root {
+        --alt-landing-container-padding: 20px;
+    }
+}
+
+@media (width < 350px) {
+    :root {
+        --alt-landing-container-padding: 12px;
+    }
+}
