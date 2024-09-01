@@ -22,15 +22,10 @@ const Feedback: React.FC = () => {
     date_published: 'Wed Oct 05 2011 16:48:00 GMT+0200 (CEST)'
   }
 
-
-
   return (
     <>
-      <Nav/>
-      <Header/>
-      <Info></Info>
-      <Intro>Отзывы</Intro>
 
+      <Intro>Отзывы</Intro>
 
       <div className="feed container">
         <div className="feed__sidebar">
@@ -107,17 +102,17 @@ const Feedback: React.FC = () => {
               </div>
             </div>
             <div className="listing__body">
-              <div className="listing__item">
-                <Entry data={data}/>
-              </div>
-              <div className="listing__item">
-                <Entry data={data}/>
-              </div>
-              <div className="listing__item">
-                <Entry data={data}/>
-              </div>
 
 
+              <div className="listing__item">
+                <Entry data={data}/>
+              </div>
+              <div className="listing__item">
+                <Entry data={data}/>
+              </div>
+              <div className="listing__item">
+                <Entry data={data}/>
+              </div>
 
 
             </div>
@@ -134,12 +129,6 @@ const Feedback: React.FC = () => {
           </div>
         </div>
       </div>
-
-
-
-
-
-      <Footer/>
     </>
   )
 }
