@@ -1,6 +1,7 @@
 import './header.css';
 import './submenu.css';
 import Logo from "../logo/logo.tsx";
+import Media from "../media/media.tsx";
 
 const Header: React.FC = () => {
   return (
@@ -433,10 +434,8 @@ const Header: React.FC = () => {
             Москва
           </div>
         </div>
-        <div className="header__social media media--enlarged">
-          <a className="media__item media__item--vk" href="#">Вконтакте</a>
-          <a className="media__item media__item--instagram" href="#">Instagram</a>
-          <a className="media__item media__item--youtube" href="#">YouTube</a>
+        <div className="header__social">
+          <Media enlarged/>
         </div>
       </div>
     </header>
