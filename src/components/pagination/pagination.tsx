@@ -1,29 +1,35 @@
 import './pagination.css';
 
 type PaginationProps = {
+  currentPage: number;
   itemsPerPage: number;
   totalItems: number;
-  paginate: (pageNumber: number) => void;
-  currentPage: number;
+  onPageChange: (page: number) => void;
 };
 
-const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
+const Pagination: React.FC<PaginationProps> = ({
+   currentPage,
+   itemsPerPage,
+   totalItems,
+   onPageChange,
+ }) => {
   const pageNumbers = [];
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
+  for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
 
   return (
     <div className="pagination">
-      {pageNumbers.map(number => (
+      {pageNumbers.map((number) => (
         <a
           key={number}
+          className={`pagination__link ${number === currentPage ? 'pagination__link--current' : ''}`}
           href="#"
-          className={`pagination__link ${currentPage === number ? 'pagination__link--current' : ''}`}
           onClick={(e) => {
             e.preventDefault();
-            paginate(number);
+            onPageChange(number);
           }}
         >
           {number}
