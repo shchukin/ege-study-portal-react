@@ -1,9 +1,5 @@
 import Entry from "../../components/entry/entry.tsx";
 import Intro from "../../components/intro/intro.tsx";
-import Info from "../../components/info/info.tsx";
-import Header from "../../components/header/header.tsx";
-import Nav from "../../components/nav/nav.tsx";
-import Footer from "../../components/footer/footer.tsx";
 
 import './collapse.css';
 import './listing.css';
@@ -20,7 +16,8 @@ const Feedback: React.FC = () => {
     author: 'lorem',
     content: 'lorem',
     tags: ['lorem', 'lorem', 'lorem'],
-    date_published: 'Wed Oct 05 2011 16:48:00 GMT+0200 (CEST)'
+    date_published: 'Wed Oct 05 2011 16:48:00 GMT+0200 (CEST)',
+    video: 'wDchsz8nmbo'
   }
 
   return (
@@ -97,7 +94,7 @@ const Feedback: React.FC = () => {
           <div className="feed__list listing">
             <div className="listing__filter hide-scrollbar">
               <div className="listing__ribbon">
-                <button className="listing__tag listing__tag--current" type="button">Недавние</button>
+                <button className="listing__tag listing__tag--current" type="button">Все</button>
                 <button className="listing__tag" type="button">Только видео</button>
                 <button className="listing__tag" type="button">Только статьи</button>
               </div>
