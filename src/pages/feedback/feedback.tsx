@@ -1,28 +1,59 @@
+import React, { useState } from 'react';
 import Entry from "../../components/entry/entry.tsx";
 import Intro from "../../components/intro/intro.tsx";
-
 import './collapse.css';
 import './listing.css';
 import './feed.css';
 import Panel from "../../components/panel/panel.tsx";
 import Pagination from "../../components/pagination/pagination.tsx";
-
+import {mockData} from '../../mocks/mockData.ts';
 
 const Feedback: React.FC = () => {
+  const [filteredData, setFilteredData] = useState(mockData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
-  const data = {
-    id: 1,
-    url: 'lorem',
-    author: 'lorem',
-    content: 'lorem',
-    tags: ['lorem', 'lorem', 'lorem'],
-    date_published: 'Wed Oct 05 2011 16:48:00 GMT+0200 (CEST)',
-    video: 'wDchsz8nmbo'
-  }
+  const [selectedFilters, setSelectedFilters] = useState({
+    topic: 'Все предметы',
+    format: 'Все',
+    author: 'Все',
+    hasVideo: null as boolean | null,
+  });
+
+  const handleFilterChange = (type: string, value: string) => {
+    setSelectedFilters((prevFilters) => {
+      const newFilters = { ...prevFilters, [type]: value };
+      applyFilters(newFilters);
+      return newFilters;
+    });
+  };
+
+  const handleVideoToggle = (hasVideo: boolean | null) => {
+    setSelectedFilters((prevFilters) => {
+      const newFilters = { ...prevFilters, hasVideo };
+      applyFilters(newFilters);
+      return newFilters;
+    });
+  };
+
+  const applyFilters = (filters: typeof selectedFilters) => {
+    const filtered = mockData.filter((entry) => {
+      const matchTopic = filters.topic === 'Все предметы' || entry.topic === filters.topic;
+      const matchFormat = filters.format === 'Все' || entry.format === filters.format;
+      const matchAuthor = filters.author === 'Все' || entry.author === filters.author;
+      const matchVideo = filters.hasVideo === null || (filters.hasVideo ? !!entry.video : !entry.video);
+      return matchTopic && matchFormat && matchAuthor && matchVideo;
+    });
+    setFilteredData(filtered);
+    setCurrentPage(1); // Reset to first page when filters change
+  };
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentEntries = filteredData.slice(indexOfFirstItem, indexOfFirstItem + itemsPerPage);
 
   return (
     <>
-
       <Intro>Отзывы</Intro>
 
       <div className="feed container">
@@ -33,22 +64,92 @@ const Feedback: React.FC = () => {
                 Все новости
               </button>
               <nav className="collapse__dropdown">
-                <h2 className="collapse__heading">
-                  Предметы
-                </h2>
+                <h2 className="collapse__heading">Предметы</h2>
                 <div className="collapse__list">
-                  <a className="collapse__link collapse__link--current" href="#">Все предметы</a>
-                  <a className="collapse__link" href="#">Математика</a>
-                  <a className="collapse__link" href="#">Русский язык</a>
-                  <a className="collapse__link" href="#">Информатика</a>
-                  <a className="collapse__link" href="#">Биология</a>
-                  <a className="collapse__link" href="#">Химия</a>
-                  <a className="collapse__link" href="#">Обществознание</a>
-                  <a className="collapse__link" href="#">Литература</a>
-                  <a className="collapse__link" href="#">География</a>
-                  <a className="collapse__link" href="#">Английский</a>
-                  <a className="collapse__link" href="#">История</a>
-                  <a className="collapse__link" href="#">Физика</a>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'Все предметы' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'Все предметы')}
+                  >
+                    Все предметы
+                  </button>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'Математика' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'Математика')}
+                  >
+                    Математика
+                  </button>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'Русский язык' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'Русский язык')}
+                  >
+                    Русский язык
+                  </button>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'Информатика' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'Информатика')}
+                  >
+                    Информатика
+                  </button>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'Биология' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'Биология')}
+                  >
+                    Биология
+                  </button>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'Химия' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'Химия')}
+                  >
+                    Химия
+                  </button>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'Обществознание' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'Обществознание')}
+                  >
+                    Обществознание
+                  </button>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'Литература' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'Литература')}
+                  >
+                    Литература
+                  </button>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'География' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'География')}
+                  >
+                    География
+                  </button>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'Английский' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'Английский')}
+                  >
+                    Английский
+                  </button>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'История' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'История')}
+                  >
+                    История
+                  </button>
+                  <button
+                    className={`collapse__link ${selectedFilters.topic === 'Физика' ? 'collapse__link--current' : ''}`}
+                    type="button"
+                    onClick={() => handleFilterChange('topic', 'Физика')}
+                  >
+                    Физика
+                  </button>
                 </div>
               </nav>
             </div>
@@ -57,14 +158,36 @@ const Feedback: React.FC = () => {
                 Форматы занятий
               </button>
               <nav className="collapse__dropdown">
-                <h2 className="collapse__heading">
-                  Форматы занятий
-                </h2>
+                <h2 className="collapse__heading">Форматы занятий</h2>
                 <div className="collapse__list">
-                  <a className="collapse__link collapse__link--current" href="#">Все</a>
-                  <a className="collapse__link" href="#">Очно</a>
-                  <a className="collapse__link" href="#">Онлайн (в&nbsp;прямом эфире)</a>
-                  <a className="collapse__link" href="#">В&nbsp;записи</a>
+                  <a
+                    className={`collapse__link ${selectedFilters.format === 'Все' ? 'collapse__link--current' : ''}`}
+                    href="#"
+                    onClick={() => handleFilterChange('format', 'Все')}
+                  >
+                    Все
+                  </a>
+                  <a
+                    className={`collapse__link ${selectedFilters.format === 'Очно' ? 'collapse__link--current' : ''}`}
+                    href="#"
+                    onClick={() => handleFilterChange('format', 'Очно')}
+                  >
+                    Очно
+                  </a>
+                  <a
+                    className={`collapse__link ${selectedFilters.format === 'Онлайн (в&nbsp;прямом эфире)' ? 'collapse__link--current' : ''}`}
+                    href="#"
+                    onClick={() => handleFilterChange('format', 'Онлайн (в&nbsp;прямом эфире)')}
+                  >
+                    Онлайн (в&nbsp;прямом эфире)
+                  </a>
+                  <a
+                    className={`collapse__link ${selectedFilters.format === 'В&nbsp;записи' ? 'collapse__link--current' : ''}`}
+                    href="#"
+                    onClick={() => handleFilterChange('format', 'В&nbsp;записи')}
+                  >
+                    В&nbsp;записи
+                  </a>
                 </div>
               </nav>
             </div>
@@ -73,15 +196,36 @@ const Feedback: React.FC = () => {
                 Преподаватели
               </button>
               <nav className="collapse__dropdown">
-                <h2 className="collapse__heading">
-                  Преподаватели
-                </h2>
+                <h2 className="collapse__heading">Преподаватели</h2>
                 <div className="collapse__list">
-                  <a className="collapse__link collapse__link--current" href="#">Все</a>
-                  <a className="collapse__link" href="#">Гущина О.В.</a>
-                  <a className="collapse__link" href="#">Малкова А.Н.</a>
-                  <a className="collapse__link" href="#">Кривенкова И.А.</a>
-                  <a className="collapse__link" href="#">Храпова&nbsp;И.&nbsp;М.</a>
+                  <a
+                    className={`collapse__link ${selectedFilters.author === 'Все' ? 'collapse__link--current' : ''}`}
+                    href="#"
+                    onClick={() => handleFilterChange('author', 'Все')}
+                  >
+                    Все
+                  </a>
+                  <a
+                    className={`collapse__link ${selectedFilters.author === 'Гущина О.В.' ? 'collapse__link--current' : ''}`}
+                    href="#"
+                    onClick={() => handleFilterChange('author', 'Гущина О.В.')}
+                  >
+                    Гущина О.В.
+                  </a>
+                  <a
+                    className={`collapse__link ${selectedFilters.author === 'Малкова А.Н.' ? 'collapse__link--current' : ''}`}
+                    href="#"
+                    onClick={() => handleFilterChange('author', 'Малкова А.Н.')}
+                  >
+                    Малкова А.Н.
+                  </a>
+                  <a
+                    className={`collapse__link ${selectedFilters.author === 'Иванова И.И.' ? 'collapse__link--current' : ''}`}
+                    href="#"
+                    onClick={() => handleFilterChange('author', 'Иванова И.И.')}
+                  >
+                    Иванова И.И.
+                  </a>
                 </div>
               </nav>
             </div>
@@ -94,34 +238,49 @@ const Feedback: React.FC = () => {
           <div className="feed__list listing">
             <div className="listing__filter hide-scrollbar">
               <div className="listing__ribbon">
-                <button className="listing__tag listing__tag--current" type="button">Все</button>
-                <button className="listing__tag" type="button">Только видео</button>
-                <button className="listing__tag" type="button">Только статьи</button>
+                <button
+                  className={`listing__tag ${selectedFilters.hasVideo === null ? 'listing__tag--current' : ''}`}
+                  type="button"
+                  onClick={() => handleVideoToggle(null)}
+                >
+                  Все отзывы
+                </button>
+                <button
+                  className={`listing__tag ${selectedFilters.hasVideo === false ? 'listing__tag--current' : ''}`}
+                  type="button"
+                  onClick={() => handleVideoToggle(false)}
+                >
+                  Без видео
+                </button>
+                <button
+                  className={`listing__tag ${selectedFilters.hasVideo === true ? 'listing__tag--current' : ''}`}
+                  type="button"
+                  onClick={() => handleVideoToggle(true)}
+                >
+                  С&nbsp;видео
+                </button>
               </div>
             </div>
             <div className="listing__body">
-
-
-              <div className="listing__item">
-                <Entry data={data}/>
-              </div>
-              <div className="listing__item">
-                <Entry data={data}/>
-              </div>
-              <div className="listing__item">
-                <Entry data={data}/>
-              </div>
-
-
+              {currentEntries.map((entry) => (
+                <div className="listing__item" key={entry.id}>
+                  <Entry data={entry}/>
+                </div>
+              ))}
             </div>
             <div className="listing__pages">
-              <Pagination/>
+              <Pagination
+                currentPage={currentPage}
+                itemsPerPage={itemsPerPage}
+                totalItems={filteredData.length}
+                onPageChange={setCurrentPage}
+              />
             </div>
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Feedback;

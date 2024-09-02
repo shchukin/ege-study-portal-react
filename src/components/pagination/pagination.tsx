@@ -1,20 +1,42 @@
 import './pagination.css';
 
-// type PaginationProps = {
-//
-// }
+type PaginationProps = {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  onPageChange: (page: number) => void;
+};
 
-const Pagination: React.FC<PaginationProps> = () => {
+const Pagination: React.FC<PaginationProps> = ({
+   currentPage,
+   itemsPerPage,
+   totalItems,
+   onPageChange,
+ }) => {
+  const pageNumbers = [];
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <div className="pagination">
-      <a className="pagination__link pagination__link--disabled" href="#">1</a>
-      <a className="pagination__link pagination__link--current" href="#">2</a>
-      <a className="pagination__link" href="#">3</a>
-      <div className="pagination__separator">...</div>
-      <a className="pagination__link" href="#">10</a>
-      <a className="pagination__link pagination__link--next" href="#">Далее →</a>
+      {pageNumbers.map((number) => (
+        <a
+          key={number}
+          className={`pagination__link ${number === currentPage ? 'pagination__link--current' : ''}`}
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            onPageChange(number);
+          }}
+        >
+          {number}
+        </a>
+      ))}
     </div>
-  )
-}
+  );
+};
 
 export default Pagination;
