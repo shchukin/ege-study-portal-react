@@ -16,11 +16,13 @@ const Pagination: React.FC<PaginationProps> = ({
   const pageNumbers = [];
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
+  // @todo: выводится много страниц
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
 
-  return (
+    // @todo: не переключается активный элемент
+    return (
     <div className="pagination">
       {pageNumbers.map((number) => (
         <a
